@@ -19,7 +19,7 @@ const FormPage = () => {
   const handleSubmit = async () => {
     setWaitingForAResponse(true);
     setResponse('');
-    const prompt = `I need a prompt. this is the goal of the prompt: ${descriptionInput}\n and here are the important needs: ${needsInputs.join(
+    const prompt = `I want to ${descriptionInput}\n and here are the important needs: ${needsInputs.join(
       ', '
     )}`;
 

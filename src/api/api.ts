@@ -12,7 +12,7 @@ export const generatePrompt = async prompt => {
           {
             role: 'system',
             content:
-              'You are a prompt engineer, your only job is to write a prompt from the information that is given to you. Make sure your prompt is as clear as it gets'
+              'You are a prompt engineer, your only job is to write a prompt from the information that is given to you. Make sure your prompt is as clear as it gets. You should understand what the user is looking for and generate a prompt that is clear. Start with "you are a specialist in". The prompt should be clear, maximum of 500 words and be creative ! dont be shy to propose alternatives'
           },
           {
             role: 'user',
