@@ -7,6 +7,7 @@ import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import axios from 'axios';
+import GeneratedPrompt from '../components/generated-prompt';
 
 const FormPage = () => {
   const [descriptionInput, setDescriptionInput] = useState<string>('');
@@ -90,7 +91,8 @@ const FormPage = () => {
       >
         Generate a prompt
       </Button>
-      {response && response}
+      {/* <GeneratedPrompt response={response} /> */}
+      {response && <GeneratedPrompt response={response} />}
     </Box>
   );
 };
