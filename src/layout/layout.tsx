@@ -9,14 +9,13 @@ interface LayoutProps {
 }
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
-  const myLogo = '< />';
+  const myLogo = '/>';
   return (
     <Box>
       <Box
         sx={{
           display: 'flex',
           alignItems: 'center',
-
           boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
           justifyContent: 'space-between'
         }}
@@ -25,15 +24,15 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           sx={{
             display: 'flex',
             alignItems: 'center',
-            gap: '15px',
+            gap: '12px',
             textTransform: 'uppercase',
             fontWeight: 'bold',
-            fontSize: '1rem',
+
             padding: '15px'
           }}
         >
           {myLogo}
-          Help me with my prompt
+          <span className="text-xs">Help me with my prompt</span>
         </Box>
         <Box
           sx={{
