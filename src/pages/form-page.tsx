@@ -3,6 +3,9 @@ import MyDescription from '../components/my-description';
 import MyNeeds from '../components/my-needs';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
 
 const FormPage = () => {
   const [descriptionInput, setDescriptionInput] = useState<string>('');
@@ -23,7 +26,20 @@ const FormPage = () => {
         }
       }}
     >
-      <h1 className="text-xl">Fill this form and generate a prompt</h1>
+      <Box sx={{ display: 'flex', alignItems: 'center' }}>
+        <h1 className="text-l">Fill in this form and generate a prompt</h1>
+        <Tooltip
+          title=" This app helps you write a prompt that you later will use with chatgpt
+          or any other Chatbot. Make sure to be precise with your goal and your
+          needs so the generated prompt is as clear as it can be. It is
+          suggested that you modify the generated prompt to your needs, since
+          this is only a start"
+        >
+          <IconButton>
+            <InfoOutlinedIcon sx={{ fontSize: '0.8rem' }} />
+          </IconButton>
+        </Tooltip>
+      </Box>
       <Box sx={{ marginTop: '30px' }}>
         <MyDescription
           descriptionInput={descriptionInput}
