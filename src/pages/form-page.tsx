@@ -6,15 +6,47 @@ import Button from '@mui/material/Button';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
+import axios from 'axios';
 
 const FormPage = () => {
   const [descriptionInput, setDescriptionInput] = useState<string>('');
   const [needsInputs, setNeedsInputs] = useState<string[]>(['']); // State for needs inputs
+  const [response, setResponse] = useState<string>('');
 
-  // Function to handle form submission
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     console.log('Description:', descriptionInput);
     console.log('Needs:', needsInputs);
+    // Construct your message or prompt
+    const prompt = `Description: ${descriptionInput}\nNeeds: ${needsInputs.join(
+      ', '
+    )}`;
+
+    const apiKey = import.meta.env.OPENAI_API_KEY as string;
+
+    try {
+      const res = await axios.post(
+        'https://api.openai.com/v1/chat/completions', // Correct endpoint for ChatGPT models
+        {
+          model: 'gpt-3.5-turbo', // or 'gpt-4' if available
+          messages: [
+            { role: 'system', content: 'You are a helpful assistant.' }, // Optional: set the system message to control the behavior
+            { role: 'user', content: prompt } // The user's prompt
+          ],
+          max_tokens: 150, // Adjust max_tokens as per your requirements
+          temperature: 0.7 // Adjust temperature to control creativity
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${apiKey}`,
+            'Content-Type': 'application/json'
+          }
+        }
+      );
+
+      setResponse(res.data.choices[0].message.content); // Extracting the response from the API
+    } catch (error) {
+      console.error('Error sending request to OpenAI:', error);
+    }
   };
 
   return (
@@ -54,6 +86,7 @@ const FormPage = () => {
       >
         Generate a prompt
       </Button>
+      {response && response}
     </Box>
   );
 };
