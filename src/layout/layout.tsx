@@ -1,19 +1,32 @@
-import React from 'react';
-import { ReactNode } from 'react';
+import React, { ReactNode } from 'react';
+import Box from '@mui/material/Box';
 
 interface LayoutProps {
   children: ReactNode;
 }
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
+  const myLogo = '< />';
   return (
-    <div className="ml-3 mt-2 flex h-full gap-8">
-      <div>
-        <h1>My App</h1>
-        {/* You can add navigation or a logo here */}
-      </div>
-      <div>{children}</div>
-    </div>
+    <Box>
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '15px',
+          textTransform: 'uppercase',
+          fontWeight: 'bold',
+          fontSize: '1rem',
+          boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
+          padding: '15px'
+        }}
+      >
+        {myLogo}
+        <Box>Help me with my prompt</Box>
+      </Box>
+
+      {children}
+    </Box>
   );
 };
 
