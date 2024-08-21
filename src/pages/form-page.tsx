@@ -8,13 +8,16 @@ import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import axios from 'axios';
 import GeneratedPrompt from '../components/generated-prompt';
+import WaitingForAResponse from '../components/waiting-for-a-reponse';
 
 const FormPage = () => {
   const [descriptionInput, setDescriptionInput] = useState<string>('');
   const [needsInputs, setNeedsInputs] = useState<string[]>(['']); // State for needs inputs
   const [response, setResponse] = useState<string>('');
+  const [waitingForAReponse, setWaitingForAResponse] = useState<boolean>(false);
 
   const handleSubmit = async () => {
+    setWaitingForAResponse(true);
     const prompt = `this is my goal: ${descriptionInput}\n and here are my needs: ${needsInputs.join(
       ', '
     )}`;
@@ -23,22 +26,22 @@ const FormPage = () => {
       const apiKey = import.meta.env.VITE_OPENAI_API_KEY;
 
       const res = await axios.post(
-        'https://api.openai.com/v1/chat/completions', // Correct endpoint for ChatGPT models
+        'https://api.openai.com/v1/chat/completions',
         {
-          model: 'gpt-3.5-turbo', // or 'gpt-4' if available
+          model: 'gpt-3.5-turbo',
           messages: [
             {
               role: 'system',
               content:
                 'I am going to give you my needs and you Write me a good solid prompt for chatgpt so it helps me figure out a path, be creative and useful. You are a great prompt engineer'
-            }, // Optional: set the system message to control the behavior
+            },
             {
               role: 'user',
               content: prompt
             }
           ],
-          max_tokens: 550, // Adjust max_tokens as per your requirements
-          temperature: 0.7 // Adjust temperature to control creativity
+          max_tokens: 550,
+          temperature: 0.7
         },
         {
           headers: {
@@ -48,7 +51,8 @@ const FormPage = () => {
         }
       );
 
-      setResponse(res.data.choices[0].message.content ?? ''); // Extracting the response from the API
+      setWaitingForAResponse(false);
+      setResponse(res.data.choices[0].message.content ?? '');
     } catch (error) {
       console.error('Error sending request to OpenAI:', error);
     }
@@ -58,8 +62,8 @@ const FormPage = () => {
     <Box
       sx={{
         padding: {
-          xs: '12px', // 8px padding on extra-small screens
-          md: '32px' // 32px padding on medium screens
+          xs: '12px',
+          md: '32px'
         }
       }}
     >
@@ -91,7 +95,8 @@ const FormPage = () => {
       >
         Generate a prompt
       </Button>
-      {/* <GeneratedPrompt response={response} /> */}
+
+      {waitingForAReponse && <WaitingForAResponse open={waitingForAReponse} />}
       {response && <GeneratedPrompt response={response} />}
     </Box>
   );
