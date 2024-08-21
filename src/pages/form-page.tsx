@@ -21,18 +21,26 @@ const FormPage = () => {
       ', '
     )}`;
 
-    const apiKey = import.meta.env.OPENAI_API_KEY as string;
-
     try {
+      const apiKey = import.meta.env.VITE_OPENAI_API_KEY;
+
+      console.log(prompt);
       const res = await axios.post(
         'https://api.openai.com/v1/chat/completions', // Correct endpoint for ChatGPT models
         {
           model: 'gpt-3.5-turbo', // or 'gpt-4' if available
           messages: [
-            { role: 'system', content: 'You are a helpful assistant.' }, // Optional: set the system message to control the behavior
-            { role: 'user', content: prompt } // The user's prompt
+            {
+              role: 'system',
+              content:
+                'I am going to give you my needs and you Write me a good solid prompt for chatgpt so it helps me figure out a path, be creative and useful. You are a great prompt engineer'
+            }, // Optional: set the system message to control the behavior
+            {
+              role: 'user',
+              content: prompt
+            }
           ],
-          max_tokens: 150, // Adjust max_tokens as per your requirements
+          max_tokens: 550, // Adjust max_tokens as per your requirements
           temperature: 0.7 // Adjust temperature to control creativity
         },
         {
@@ -43,7 +51,7 @@ const FormPage = () => {
         }
       );
 
-      setResponse(res.data.choices[0].message.content); // Extracting the response from the API
+      setResponse(res.data.choices[0].message.content ?? ''); // Extracting the response from the API
     } catch (error) {
       console.error('Error sending request to OpenAI:', error);
     }
