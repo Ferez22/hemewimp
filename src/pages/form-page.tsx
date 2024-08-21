@@ -14,17 +14,13 @@ const FormPage = () => {
   const [response, setResponse] = useState<string>('');
 
   const handleSubmit = async () => {
-    console.log('Description:', descriptionInput);
-    console.log('Needs:', needsInputs);
-    // Construct your message or prompt
-    const prompt = `Description: ${descriptionInput}\nNeeds: ${needsInputs.join(
+    const prompt = `this is my goal: ${descriptionInput}\n and here are my needs: ${needsInputs.join(
       ', '
     )}`;
 
     try {
       const apiKey = import.meta.env.VITE_OPENAI_API_KEY;
 
-      console.log(prompt);
       const res = await axios.post(
         'https://api.openai.com/v1/chat/completions', // Correct endpoint for ChatGPT models
         {
