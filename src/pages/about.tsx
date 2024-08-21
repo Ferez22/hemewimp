@@ -47,7 +47,7 @@ export default function AboutPage() {
   return (
     <Box
       sx={{
-        maxWidth: 800,
+        width: { xs: '90%', s: '60%', md: '50%' },
         position: 'fixed',
         top: '50%',
         left: '50%',
