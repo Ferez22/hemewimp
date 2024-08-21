@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import AddIcon from '@mui/icons-material/Add';
@@ -6,7 +6,12 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 
-const MyNeeds = () => {
+interface MyNeedsProps {
+  needsInput: string;
+  setNeedsInput: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const MyNeeds = ({ needsInput, setNeedsInput }: MyNeedsProps) => {
   // State to manage the list of input fields
   const [inputs, setInputs] = useState<string[]>(['']); // Initial empty input field
 
@@ -23,6 +28,7 @@ const MyNeeds = () => {
     const newInputs = [...inputs];
     newInputs[index] = event.target.value;
     setInputs(newInputs);
+    setNeedsInput(event.target.value);
   };
 
   // Function to delete an input field
@@ -55,10 +61,9 @@ const MyNeeds = () => {
                 }}
               >
                 <TextField
-                  value={input}
+                  value={needsInput}
                   onChange={e => handleInputChange(index, e)}
                   label={`My Need ${index + 1}`}
-                  defaultValue="write here .."
                   helperText="Write something about your needs. Does the email have to be friendly? formal? What are the key points?"
                 />
                 {index != 0 && (
