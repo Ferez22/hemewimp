@@ -49,7 +49,7 @@ const MyNeeds = ({ needsInput, setNeedsInput }: MyNeedsProps) => {
       noValidate
       autoComplete="off"
     >
-      <div className="relative mt-3 flex flex-col gap-2">
+      <div className="relative flex flex-col gap-2">
         <div className="flex flex-col gap-2">
           {inputs.map((input, index) => (
             <div className="flex items-center" key={index}>
