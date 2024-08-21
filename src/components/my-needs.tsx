@@ -84,6 +84,7 @@ const MyNeeds = ({ needsInputs, setNeedsInputs }: MyNeedsProps) => {
               </Box>
             )}
             <TextField
+              required
               value={input} // Use local input value
               onChange={e => handleInputChange(index, e)}
               label={`My need ${index + 1} ... `}

@@ -89,7 +89,9 @@ const FormPage = () => {
         />
         <MyNeeds needsInputs={needsInputs} setNeedsInputs={setNeedsInputs} />
       </Box>
+
       <Button
+        disabled={!descriptionInput || needsInputs.some(need => !need)}
         variant="contained"
         sx={{ marginTop: '20px' }}
         onClick={handleSubmit}
