@@ -12,11 +12,11 @@ export const generatePrompt = async prompt => {
           {
             role: 'system',
             content:
-              'I am going to give you my needs and you Write me a good solid prompt for chatgpt so it helps me figure out a path, be creative and useful. You are a great prompt engineer'
+              'You are a prompt engineer, your only job is to write a prompt from the information that is given to you. Make sure your prompt is as clear as it gets'
           },
           {
             role: 'user',
-            content: prompt
+            content: `'You are a prompt engineer, your only job is to write a prompt from the information that is given to you. Make sure your prompt is as clear as it gets ${prompt}`
           }
         ],
         max_tokens: 550,
