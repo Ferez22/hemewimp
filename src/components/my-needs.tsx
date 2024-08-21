@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent } from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import AddIcon from '@mui/icons-material/Add';
@@ -7,34 +7,30 @@ import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 
 interface MyNeedsProps {
-  needsInput: string;
-  setNeedsInput: React.Dispatch<React.SetStateAction<string>>;
+  needsInputs: string[];
+  setNeedsInputs: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
-const MyNeeds = ({ needsInput, setNeedsInput }: MyNeedsProps) => {
-  // State to manage the list of input fields
-  const [inputs, setInputs] = useState<string[]>(['']); // Initial empty input field
-
+const MyNeeds = ({ needsInputs, setNeedsInputs }: MyNeedsProps) => {
   // Function to add a new input field
   const addInputField = () => {
-    setInputs([...inputs, '']);
+    setNeedsInputs([...needsInputs, '']);
   };
 
   // Function to handle changes in any of the input fields
   const handleInputChange = (
     index: number,
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    const newInputs = [...inputs];
+    const newInputs = [...needsInputs];
     newInputs[index] = event.target.value;
-    setInputs(newInputs);
-    setNeedsInput(event.target.value);
+    setNeedsInputs(newInputs);
   };
 
   // Function to delete an input field
   const deleteInputField = (index: number) => {
-    if (inputs.length > 1) {
-      setInputs(inputs.filter((_, i) => i !== index));
+    if (needsInputs.length > 1) {
+      setNeedsInputs(needsInputs.filter((_, i) => i !== index));
     }
   };
 
@@ -51,7 +47,7 @@ const MyNeeds = ({ needsInput, setNeedsInput }: MyNeedsProps) => {
     >
       <div className="relative flex flex-col gap-2">
         <div className="flex flex-col gap-2">
-          {inputs.map((input, index) => (
+          {needsInputs.map((input, index) => (
             <div className="flex items-center" key={index}>
               <Box
                 sx={{
@@ -61,13 +57,13 @@ const MyNeeds = ({ needsInput, setNeedsInput }: MyNeedsProps) => {
                 }}
               >
                 <TextField
-                  value={needsInput}
+                  value={input} // Use local input value
                   onChange={e => handleInputChange(index, e)}
                   label={`My Need ${index + 1}`}
                   helperText="Write something about your needs. Does the email have to be friendly? formal? What are the key points?"
                 />
-                {index != 0 && (
-                  <Tooltip title="delete a need" placement="top">
+                {index !== 0 && (
+                  <Tooltip title="Delete a need" placement="top">
                     <IconButton
                       onClick={() => deleteInputField(index)}
                       className="ml-2"
@@ -78,7 +74,7 @@ const MyNeeds = ({ needsInput, setNeedsInput }: MyNeedsProps) => {
                 )}
               </Box>
               {/* Show the button only next to the last input field */}
-              {index === inputs.length - 1 && (
+              {index === needsInputs.length - 1 && (
                 <Tooltip title="Add a need" placement="top">
                   <IconButton onClick={addInputField} className="ml-2">
                     <AddIcon />
