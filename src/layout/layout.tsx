@@ -1,5 +1,8 @@
 import React, { ReactNode } from 'react';
 import Box from '@mui/material/Box';
+import { Link } from 'react-router-dom';
+import IconButton from '@mui/material/IconButton';
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 
 interface LayoutProps {
   children: ReactNode;
@@ -13,18 +16,57 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         sx={{
           display: 'flex',
           alignItems: 'center',
-          gap: '15px',
-          textTransform: 'uppercase',
-          fontWeight: 'bold',
-          fontSize: '1rem',
+
           boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
-          padding: '15px'
+          justifyContent: 'space-between'
         }}
       >
-        {myLogo}
-        <Box>Help me with my prompt</Box>
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '15px',
+            textTransform: 'uppercase',
+            fontWeight: 'bold',
+            fontSize: '1rem',
+            padding: '15px'
+          }}
+        >
+          {myLogo}
+          Help me with my prompt
+        </Box>
+        <Box
+          sx={{
+            marginRight: '50px',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '12px'
+          }}
+        >
+          <Link to="/">
+            <IconButton aria-label="Example">
+              <HomeOutlinedIcon />
+            </IconButton>
+          </Link>
+          <Box
+            sx={{
+              textDecoration: 'none',
+              color: 'inherit', // Inherit color from parent, or set a default color
+              padding: 1,
+              borderRadius: 1,
+              transition: 'background-color 0.3s, color 0.3s',
+              '&:hover': {
+                color: '#fff', // Change text color on hover
+                backgroundColor: '#000', // Optional: change background color on hover
+                padding: 1,
+                borderRadius: 1
+              }
+            }}
+          >
+            <Link to="/about">About</Link>
+          </Box>
+        </Box>
       </Box>
-
       {children}
     </Box>
   );
