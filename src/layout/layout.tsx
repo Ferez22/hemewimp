@@ -23,9 +23,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       <Box
         sx={{
           textTransform: 'uppercase',
-          fontWeight: 'bold',
-          // Responsive text size
-          fontSize: { xs: '1.5rem', md: '2rem' }
+          fontWeight: 'bold'
         }}
       >
         <h1>hemewimp</h1>

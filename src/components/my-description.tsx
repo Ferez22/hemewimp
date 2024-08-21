@@ -21,21 +21,30 @@ const MyDescription = ({
       sx={{
         '& .MuiTextField-root': {
           m: 1
-        }
+        },
+        width: '100%' // Ensure the container takes full width
       }}
       noValidate
       autoComplete="off"
     >
-      <div>
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          flexGrow: 1,
+          width: '100%' // Ensure the inner container takes full width
+        }}
+      >
         <TextField
           required
           id="outlined-required"
           label="My goal?"
           value={descriptionInput} // Controlled value from props
           onChange={handleInputChange} // Update state on change
-          helperText="Write something about the your goal, do you want to write an email? to whom? what is the subject?"
+          helperText="Write something about your goal. Do you want to write an email? To whom? What is the subject?"
+          fullWidth // Makes the TextField take full width of its container
         />
-      </div>
+      </Box>
     </Box>
   );
 };
