@@ -87,7 +87,9 @@ const MyNeeds = ({ needsInputs, setNeedsInputs }: MyNeedsProps) => {
               required
               value={input} // Use local input value
               onChange={e => handleInputChange(index, e)}
-              label={`My need ${index + 1} ... `}
+              label={`Important things to take into consideration ${
+                index + 1
+              } ... `}
               helperText="Write something about your needs. You cann add fields for multiple needs. Does the email have to be friendly? formal? What are the key points?"
               fullWidth
             />

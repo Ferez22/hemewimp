@@ -38,7 +38,7 @@ const MyDescription = ({
         <TextField
           required
           id="outlined-required"
-          label="My goal?"
+          label="Main goal of the prompt"
           value={descriptionInput} // Controlled value from props
           onChange={handleInputChange} // Update state on change
           helperText="Write something about your goal. Do you want to write an email? To whom? What is the subject?"
