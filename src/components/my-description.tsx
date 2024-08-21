@@ -14,7 +14,7 @@ const MyDescription = () => {
       noValidate
       autoComplete="off"
     >
-      <div className="">
+      <div>
         <TextField
           required
           id="outlined-required"

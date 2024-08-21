@@ -18,7 +18,7 @@ const MyNeeds = () => {
   // Function to handle changes in any of the input fields
   const handleInputChange = (
     index: number,
-    event: React.ChangeEvent<HTMLInputElement>
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const newInputs = [...inputs];
     newInputs[index] = event.target.value;
@@ -61,14 +61,16 @@ const MyNeeds = () => {
                   defaultValue="write here .."
                   helperText="Write something about your needs. Does the email have to be friendly? formal? What are the key points?"
                 />
-                <Tooltip title="delete a need" placement="top">
-                  <IconButton
-                    onClick={() => deleteInputField(index)}
-                    className="ml-2"
-                  >
-                    <DeleteIcon />
-                  </IconButton>
-                </Tooltip>
+                {index != 0 && (
+                  <Tooltip title="delete a need" placement="top">
+                    <IconButton
+                      onClick={() => deleteInputField(index)}
+                      className="ml-2"
+                    >
+                      <DeleteIcon />
+                    </IconButton>
+                  </Tooltip>
+                )}
               </Box>
               {/* Show the button only next to the last input field */}
               {index === inputs.length - 1 && (

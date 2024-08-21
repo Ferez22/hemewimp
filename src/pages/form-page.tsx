@@ -5,13 +5,13 @@ import Box from '@mui/material/Box';
 
 const FormPage = () => {
   return (
-    <>
-      <h1>fill this form to generate a prompt</h1>
-      <Box sx={{ marginTop: '50px' }}>
+    <Box sx={{ padding: '50px' }}>
+      <h1>Fill this form to generate a prompt</h1>
+      <Box sx={{ marginTop: '30px' }}>
         <MyDescription />
         <MyNeeds />
       </Box>
-    </>
+    </Box>
   );
 };
 
