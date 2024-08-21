@@ -44,7 +44,7 @@ export default function GeneratedPrompt({ response }: GeneratedPromptProps) {
           transform: 'translateX(-50%)'
         }}
       >
-        Display prompt
+        Display generated prompt
       </Button>
       <Dialog
         open={open}
