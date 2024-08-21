@@ -41,8 +41,7 @@ const MyNeeds = ({ needsInputs, setNeedsInputs }: MyNeedsProps) => {
         '& .MuiTextField-root': {
           m: 1
         },
-        position: 'relative',
-        minHeight: '100vh' // Ensure the container takes full height
+        position: 'relative'
       }}
       noValidate
       autoComplete="off"
@@ -87,7 +86,7 @@ const MyNeeds = ({ needsInputs, setNeedsInputs }: MyNeedsProps) => {
             <TextField
               value={input} // Use local input value
               onChange={e => handleInputChange(index, e)}
-              label={`My Need ${index + 1}`}
+              label={`My need ${index + 1} ... `}
               helperText="Write something about your needs. You cann add fields for multiple needs. Does the email have to be friendly? formal? What are the key points?"
               fullWidth
             />

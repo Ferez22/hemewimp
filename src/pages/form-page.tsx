@@ -18,15 +18,12 @@ const FormPage = () => {
     <Box
       sx={{
         padding: {
-          xs: '8px', // 8px padding on extra-small screens
-          sm: '16px', // 16px padding on small screens
-          md: '32px', // 32px padding on medium screens
-          lg: '40px', // 40px padding on large screens
-          xl: '50px' // 50px padding on extra-large screens
+          xs: '12px', // 8px padding on extra-small screens
+          md: '32px' // 32px padding on medium screens
         }
       }}
     >
-      <h1>Fill this form to generate a prompt</h1>
+      <h1 className="text-xl">Fill this form and generate a prompt</h1>
       <Box sx={{ marginTop: '30px' }}>
         <MyDescription
           descriptionInput={descriptionInput}
@@ -36,10 +33,10 @@ const FormPage = () => {
       </Box>
       <Button
         variant="contained"
-        sx={{ position: 'fixed', bottom: '20px', right: '20px' }}
+        sx={{ marginTop: '20px' }}
         onClick={handleSubmit}
       >
-        Submit
+        Generate a prompt
       </Button>
     </Box>
   );
