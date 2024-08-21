@@ -1,35 +1,86 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import AddIcon from '@mui/icons-material/Add';
+import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 
 const MyNeeds = () => {
+  // State to manage the list of input fields
+  const [inputs, setInputs] = useState<string[]>(['']); // Initial empty input field
+
+  // Function to add a new input field
+  const addInputField = () => {
+    setInputs([...inputs, '']);
+  };
+
+  // Function to handle changes in any of the input fields
+  const handleInputChange = (
+    index: number,
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const newInputs = [...inputs];
+    newInputs[index] = event.target.value;
+    setInputs(newInputs);
+  };
+
+  // Function to delete an input field
+  const deleteInputField = (index: number) => {
+    if (inputs.length > 1) {
+      setInputs(inputs.filter((_, i) => i !== index));
+    }
+  };
+
   return (
     <Box
       component="form"
       sx={{
         '& .MuiTextField-root': {
-          m: 1,
-          width: '50ch'
+          m: 1
         }
       }}
       noValidate
       autoComplete="off"
     >
-      <div className="mt-3 flex items-center justify-center">
-        <TextField
-          id="outlined-required"
-          label="My needs"
-          defaultValue="write here .."
-          helperText="Write something about the your needs, does the email have to be friendly? formal? what are the key points?"
-        />
-        <Tooltip title="Add a need" placement="top">
-          <IconButton>
-            <AddIcon />
-          </IconButton>
-        </Tooltip>
+      <div className="relative mt-3 flex flex-col gap-2">
+        <div className="flex flex-col gap-2">
+          {inputs.map((input, index) => (
+            <div className="flex items-center" key={index}>
+              <Box
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
+              >
+                <TextField
+                  value={input}
+                  onChange={e => handleInputChange(index, e)}
+                  label={`My Need ${index + 1}`}
+                  defaultValue="write here .."
+                  helperText="Write something about your needs. Does the email have to be friendly? formal? What are the key points?"
+                />
+                <Tooltip title="delete a need" placement="top">
+                  <IconButton
+                    onClick={() => deleteInputField(index)}
+                    className="ml-2"
+                  >
+                    <DeleteIcon />
+                  </IconButton>
+                </Tooltip>
+              </Box>
+              {/* Show the button only next to the last input field */}
+              {index === inputs.length - 1 && (
+                <Tooltip title="Add a need" placement="top">
+                  <IconButton onClick={addInputField} className="ml-2">
+                    <AddIcon />
+                  </IconButton>
+                </Tooltip>
+              )}
+            </div>
+          ))}
+        </div>
       </div>
     </Box>
   );

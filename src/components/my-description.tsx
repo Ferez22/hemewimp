@@ -8,8 +8,7 @@ const MyDescription = () => {
       component="form"
       sx={{
         '& .MuiTextField-root': {
-          m: 1,
-          width: '50ch'
+          m: 1
         }
       }}
       noValidate
