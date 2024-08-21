@@ -90,7 +90,7 @@ const MyNeeds = ({ needsInputs, setNeedsInputs }: MyNeedsProps) => {
               label={`Important things to take into consideration ${
                 index + 1
               } ... `}
-              helperText="Write something about your needs. You cann add fields for multiple needs. Does the email have to be friendly? formal? What are the key points?"
+              helperText="Write something about the important things to take into consideration. What are the key needs?"
               fullWidth
             />
           </div>

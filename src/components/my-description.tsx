@@ -41,7 +41,7 @@ const MyDescription = ({
           label="Main goal of the prompt"
           value={descriptionInput} // Controlled value from props
           onChange={handleInputChange} // Update state on change
-          helperText="Write something about your goal. Do you want to write an email? To whom? What is the subject?"
+          helperText="Write something about the main goal. What does the prompt need to achieve?"
           fullWidth // Makes the TextField take full width of its container
         />
       </Box>
