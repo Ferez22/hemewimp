@@ -62,7 +62,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               }
             }}
           >
-            {/* <Link to="/about">About</Link> */}
+            <Link to="/about">About</Link>
           </Box>
         </Box>
       </Box>

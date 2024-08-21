@@ -1,10 +1,14 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
+
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 
 const card = (
   <React.Fragment>
@@ -16,7 +20,7 @@ const card = (
       >
         Welcome to Hemewimp!
       </Typography>
-      <Typography variant="h6" component="div">
+      <Typography variant="body1" component="div">
         Introducing <b>Hemewimp</b>, your new go-to app for crafting the perfect
         prompts effortlessly! Writing a good prompt is crucial for getting the
         best results from your chatbot. <b>Hemewimp</b> helps you create a
@@ -24,25 +28,17 @@ const card = (
         For instance, you can describe your goal, list your needs, and generate
         a prompt that you can use with ChatGPT or any other chatbot.
       </Typography>
-      {/* <Typography sx={{ mb: 1.5 }} color="text.secondary">
-        adjective
+      <Typography sx={{ mb: 1.5 }} color="text.secondary">
+        <br /> It is basically a simple prompt generator.
       </Typography>
-      <Typography variant="body2">
-        well meaning and kindly.
-        <br />
-        {'"a benevolent smile"'}
-      </Typography> */}
     </CardContent>
     <CardActions>
-      <Button size="small">
-        {/* <Link to="/">
-          <IconButton aria-label="Example">
-            <HomeOutlinedIcon />
-          </IconButton>
-        </Link> */}
-        learn
-      </Button>
-      learn
+      <Link to="/">
+        <Button>
+          <HomeOutlinedIcon />
+          <span className="ml-3 text-xs">Go back to homescreen</span>
+        </Button>
+      </Link>
     </CardActions>
   </React.Fragment>
 );
